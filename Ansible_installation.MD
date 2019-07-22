@@ -2,8 +2,6 @@
 
 Ansible is an open source automation platform. It is very, very simple to setup and yet powerful. Ansible can help you with configuration management, application deployment, task automation.
 
-### Follow this in **[YouTube](https://www.youtube.com/watch?v=79xFyOc_eEY)
-
 ### Prerequisites
 
 1. An AWS EC2 instance 
