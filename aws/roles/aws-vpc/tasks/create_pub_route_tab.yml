@@ -1,0 +1,23 @@
+---
+# create public route table and add Internet gateway
+
+- name: Create public route table and add Internet gateway
+  ec2_vpc_route_table:
+    region: "{{ aws_region }}"
+    vpc_id: "{{ vpc_id }}"
+    subnets: "{{ item }}"
+    routes:
+      - dest: "{{ public_cidr }}"
+        gateway_id: "{{ igw_id }}"
+  register: "public_route_table"
+  with_items: "{{ public_subnet_az_id_group }}"
+
+- name: Create variable to hold public route table
+  set_fact:
+    public_route_table_group: "{{ public_route_table_group }} + ['{{ item }}']"
+  with_items: "{{ public_route_table.results }}"
+
+# remove once the changes are tested
+- debug:
+    msg: "{{ item }}"
+  with_items: "{{ public_route_table_group }}"

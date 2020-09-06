@@ -1,0 +1,16 @@
+---
+# use the Ansible module to create our VPC, saving the output into `create_vpc`
+- name: create VPC
+  ec2_vpc_net:
+    name:             "{{ vpc_name }}"
+    cidr_block:       "{{ vpc_cidr_block }}"
+    region:           "{{ aws_region }}"
+#    aws_access_key:   "{{ aws_access_key }}"
+#    aws_secret_key:   "{{ aws_secret_key }}"
+    state:            "present"
+  register: create_vpc
+
+  # parse the output of creating the VPC to extract the VPC ID -- we need to specify this in the subsequent tasks
+- name: "set fact: VPC ID"
+  set_fact:
+    vpc_id:           "{{ create_vpc.vpc.id }}"

@@ -1,0 +1,14 @@
+---
+# create Internet gateway for the VPC
+- name: Create the Internet gateway for the VPC
+  ec2_vpc_igw:
+    vpc_id:           "{{ vpc_id }}"
+    region:           "{{ aws_region }}"
+#    aws_access_key:   "{{ aws_access_key }}"
+#    aws_secret_key:   "{{ aws_secret_key }}"
+    state:            "present"
+  register: create_igw
+
+- name: Create variable for IGW id
+  set_fact:
+    igw_id:           "{{ create_igw.gateway_id }}"

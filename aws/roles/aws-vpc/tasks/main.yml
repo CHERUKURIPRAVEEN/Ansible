@@ -1,0 +1,18 @@
+---
+# tasks file for vpc-role
+
+- name: Include YAML task to create VPC
+  include_tasks: create_vpc.yml
+
+- name: Include YAML task to create Internet gateway
+  include_tasks: create_igw_vpc.yml
+
+- name: Include YAML task to create public subnet
+  include_tasks: create_pub_subnet.yml
+
+- name: Include YAML task to create public route table
+  include_tasks: create_pub_route_tab.yml
+
+- name: Include YAML task to set public security group
+  include_tasks: set_pub_security_group.yml
+

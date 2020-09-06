@@ -1,0 +1,23 @@
+---
+# defaults file for vpc-role
+
+#  public subnet ID groups
+public_subnet_az_id_group: []
+
+#  private subnet ID groups
+private_subnet_az_id_group: []
+
+#  private NAT ID groups
+nat_gateway_az_id_group: []
+
+#  public route table groups
+public_route_table_group: []
+
+#  private route table groups
+private_route_table_group: []
+
+#  public NACL table groups
+public_networkacl_id_group: []
+
+#  private NACL table groups
+private_networkacl_id_group: []

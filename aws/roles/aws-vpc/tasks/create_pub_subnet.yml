@@ -1,0 +1,21 @@
+---
+# create subnets
+- name: Create subnet
+  ec2_vpc_subnet:
+    vpc_id:           "{{ vpc_id }}"
+    region:           "{{ aws_region }}"
+    cidr:             "{{ item.aws_az_cidr }}"
+    az:               "{{ item.aws_az }}"
+    state:            "present"
+  register: "pub_subnet_az"
+  with_items: "{{ vpc_network_map_pub }}"
+
+- name: Create variable list for AZ public subnet
+  set_fact:
+    public_subnet_az_id_group: "{{ public_subnet_az_id_group }} + ['{{ item.subnet.id }}']"
+  with_items: "{{ pub_subnet_az.results }}"
+
+# remove once the changes are tested
+- debug:
+    msg: "{{ item }}"
+  with_items: "{{ public_subnet_az_id_group }}"

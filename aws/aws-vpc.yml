@@ -1,0 +1,6 @@
+---
+- name: Install aws_vpc with one subnets
+  hosts: localhost
+
+  roles:
+    - { role: aws-vpc }

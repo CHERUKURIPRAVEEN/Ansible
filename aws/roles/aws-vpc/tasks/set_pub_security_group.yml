@@ -1,0 +1,32 @@
+---
+# create security groups for instances in pub subnet
+
+- name: Create public instance security group
+  ec2_group:
+    name: "{{ public_sg_name }}"
+    description: "Public instance security group"
+    vpc_id: "{{ vpc_id }}"
+    region: "{{ aws_region }}"
+    rules:
+      - proto:      "tcp"
+        from_port:  "80"
+        to_port:    "80"
+        cidr_ip:    "{{ public_cidr }}"
+      - proto:      "tcp"
+        from_port:  "22"
+        to_port:    "22"
+        cidr_ip:    "{{ public_cidr }}"
+    rules_egress:
+      - proto:      "tcp"
+        from_port:  "22"
+        to_port:    "22"
+        group_name: "{{ public_sg_name }}"
+      - proto:      "tcp"
+        from_port:  "80"
+        to_port:    "80"
+        cidr_ip:    "{{ public_cidr }}"
+  register: public_instance_sg
+
+- name: Create variable for public instance security group id
+  set_fact:
+    public_instance_sg_id: "{{ public_instance_sg.group_id }}"

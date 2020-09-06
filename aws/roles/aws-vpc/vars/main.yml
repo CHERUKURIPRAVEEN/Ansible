@@ -1,0 +1,12 @@
+---
+aws_region:     "us-west-2"
+vpc_name:       "VPCByAnsible"
+#vpc_name: "vpc-{{ aws_env }}"
+vpc_cidr_block: "10.0.0.0/16"
+vpc_network_map_pub:
+  # public subnet
+  - { aws_occ: 0, aws_az: "{{ aws_region }}a", aws_az_cidr: "10.0.0.0/24" }
+  - { aws_occ: 1, aws_az: "{{ aws_region }}b", aws_az_cidr: "10.0.2.0/24" }
+
+public_cidr: "0.0.0.0/0"
+public_sg_name:  "PublicSecurityGroup"
