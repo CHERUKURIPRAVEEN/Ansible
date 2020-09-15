@@ -11,7 +11,7 @@
        ec2_server_region: 'us-west-2'
        ec2_server_subnet: 'subnet-0f87fc01fe2e651b6'
        ec2_server_security_group: 'sg-0e41b3216ce450425'
-       ec2_server_keypair: 'Managed-Key'
        ec2_server_name: 'Test01ByAnsible'
+       ec2_server_keypair: 'Managed-Key'
        ec2_server_access_key: '{{ lookup("env","AWS_ACCESS_KEY") }}' # export AWS_ACCESS_KEY="XXXXXXXXXXX"
        ec2_server_secret_key: '{{ lookup("env","AWS_SECRET_KEY") }}' # export AWS_SECRET_KEY="XXXXXXXXXXXXXXXXXXXX"
