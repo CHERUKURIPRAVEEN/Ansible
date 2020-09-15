@@ -1,2 +1,12 @@
 ---
-# defaults file for pbullian.ec2
+
+ec2_server_instcount: ~
+ec2_server_instance_type: ~
+ec2_server_image: ~
+ec2_server_region: ~
+ec2_server_subnet: ~
+ec2_server_security_group: ~
+ec2_server_keypair: ~
+ec2_server_name: ~
+ec2_server_access_key: ~
+ec2_server_secret_key: ~
