@@ -4,7 +4,7 @@
   gather_facts: yes
 
   roles:
-     - role: ec2-launch
+     - role: aws-ec2
        ec2_server_instcount: 1
        ec2_server_instance_type: 't2.micro'
        ec2_server_image: 'ami-003634241a8fcdec0'
