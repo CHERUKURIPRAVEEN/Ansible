@@ -37,6 +37,9 @@
 > ansible <group name> -m service -a "name=httpd state=restarted"
 > ansible <group name> -m service -a "name=httpd state=stopped"
 ```
-
+#### Gathering facts
+```
+ansible <group name> -m setup
+```
 
 
