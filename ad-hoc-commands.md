@@ -8,8 +8,8 @@
  > ansible <group name> -a "/sbin/reboot"
  > ansible <group name> -a "/sbin/reboot" -f 10
  > ansible <group name> -a "/sbin/reboot" -f 10 -u <username>
- > ansible <group name> -a "/sbin/reboot" -f 10 -u username --become [--ask-become-pass]
- > ansible <group name> -a "/sbin/reboot" -f 10 -u username --become [-K]
+ > ansible <group name> -a "/sbin/reboot" -f 10 -u <username> --become [--ask-become-pass]
+ > ansible <group name> -a "/sbin/reboot" -f 10 -u <username> --become [-K]
 ```
 #### Managing files
 ```
