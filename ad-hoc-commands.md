@@ -39,7 +39,7 @@
 ```
 #### Gathering facts
 ```
-ansible <group name> -m setup
+ > ansible <group name> -m setup
 ```
 
 
