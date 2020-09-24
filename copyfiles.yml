@@ -2,7 +2,7 @@
 - hosts: Dev-Servers
   become: yes
    - name: unarchive the files
-     unarchive:
+     copy:
        src: /opt/testfile.txt
        dest: /tmp/
        remote_src: yes
