@@ -1,7 +1,7 @@
 ---
 - hosts: Dev-Servers
   become: yes
-   - name: unarchive the files
+   - name: copy files from source to dest
      copy:
        src: /opt/testfile.txt
        dest: /tmp/
