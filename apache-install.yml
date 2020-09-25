@@ -1,0 +1,32 @@
+---
+- name: Install apache
+  hosts: 
+  become: yes
+  tasks:
+  - name: install java
+    apt:
+      name: default-jdk
+      state: present
+    when: ansible_os_family == "debian"
+    
+  - name: download tomcat packages
+    get_url:
+      url: <tomcat url>
+      dest: /opt
+       
+  - name: untar apache packages
+    unarchive:
+      src:
+      dest:
+      remote_src: yes
+        
+  - name: add execution permissions on startup.sh file
+    file:
+      path:
+      mode: 0777
+      
+  - name: start apache
+    shell: nohup ./startup.sh
+    args:
+      chdir: 
+     
