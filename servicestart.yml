@@ -1,8 +1,0 @@
----
-- hosts: 
-  become: yes
-
-  tasks:
-   - name: start the Process
-     shell:
-       cmd: systemctl start jenkins.service

@@ -1,8 +1,0 @@
----
-- hosts: 
-  become: yes
-
-  tasks:
-   - name: stop the Process
-     shell:
-       cmd: systemctl stop jenkins.service
