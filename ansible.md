@@ -106,7 +106,7 @@ optional arguments:
 * Adding multiple `-v` will increase the verbosity, the built-in plugins currenty evaluate upto `-vvvvvv`
 * A reasonable level to start is `-vvv`, connection deburging might be require `-vvvv`
 ```
-ansible all -m ping -v
+▶️ ansible all -m ping -v
 ```
 ### Ansible Inventroy/hosts
 * Ansible keeps track of all the servers that is knows about through a `hosts` file written in `ini` format
