@@ -153,6 +153,7 @@ ansible dev_servers -i hosts -m ping
 ```
 ```
 mail.example.com
+
 [dev_web_servers]
 foo.exapmle.com
 bar.example.com
@@ -161,7 +162,7 @@ bar.example.com
 db1.example.com
 db2.exaple.com
 
-[development:childern]
+[development:children]
 dev_web_servers
 dev_db_servers
 ```
