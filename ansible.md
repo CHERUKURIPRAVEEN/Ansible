@@ -1,5 +1,5 @@
 ## Ansible
-#### Ansible Help
+### Ansible Help
 which provides a summary of the most common Ansible command-line options and subcommands
 ```
 ansible -h, --help
@@ -101,14 +101,14 @@ optional arguments:
   --diff                when changing (small) files and templates, show the
                         differences in those files; works great with --check
 ```
-#### Ansible Verbose level
+### Ansible Verbose level
 * Causes Ansible to print more deburg messgaes 
 * Adding multiple `-v` will increase the verbosity, the built-in plugins currenty evaluate upto `-vvvvvv`
 * A reasonable level to start is `-vvv`, connection deburging might be require `-vvvv`
 ```
 ansible all -m ping -v
 ```
-#### Ansible Inventroy/hosts
+### Ansible Inventroy/hosts
 * Ansible keeps track of all the servers that is knows about through a `hosts` file written in `ini` format
 * It contains information of hots that Ansible can manage
 * Default file: /etc/ansible/hosts
@@ -135,3 +135,47 @@ Ex 2: A collection of hosts belonging to the 'app-servers' group
 ## alpha.example.com
 ## beta.example.com
 ````
+* If the managed nodes run on a non-standard `SSH Port`, Then you can input the port number after the hostname with the colon.
+```
+## 10.1.1.100:9040
+## 10.1.2.100:6713
+```
+* Custom inver=ntroy file can be provided as an input using -i -r --inventroy flag
+```
+ansible all -i hostfile.inv -m ping
+```
+#### Grouping Hosts
+* You can organize your servers into different groups and subgroups(Nested Groups)
+* It is also possible to aggregate multiple groups as childern under a parent group
+
+```
+ansible dev_servers -i hosts -m ping
+```
+```
+mail.example.com
+[dev_web_servers]
+foo.exapmle.com
+bar.example.com
+
+[dev_db_servers]
+db1.example.com
+db2.exaple.com
+
+[development:childern]
+dev_web_servers
+dev_db_servers
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
