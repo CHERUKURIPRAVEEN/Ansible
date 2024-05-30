@@ -169,6 +169,20 @@ dev_db_servers
 #### Common Petterns for Targeting Hosts and Groups
 https://docs.ansible.com/ansible/latest/inventory_guide/intro_patterns.html
 
+#### Host Aliases
+* You can use aliases to name servers in a way that facilitates refrencing those servers later, when runing commands and play books.
+* To use alias, include a variable named ansible_host after the alias name, conatining the corresponding IP address or hostname of the server
+
+```
+[dev_web_servers]
+web01 ansible_host=10.1.1.100
+
+[dev_app_servers]
+app01 ansible_host=10.1.2.100
+app02 ansible_host=10.1.2.200
+app03 ansible_host=10.1.2.300
+```
+
 
 
 
