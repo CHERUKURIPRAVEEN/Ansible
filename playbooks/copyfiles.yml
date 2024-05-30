@@ -1,0 +1,8 @@
+---
+- hosts: Dev-Servers
+  become: yes
+   - name: copy files from source to dest
+     copy:
+       src: /opt/testfile.txt
+       dest: /tmp/
+       remote_src: yes

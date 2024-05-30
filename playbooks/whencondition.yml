@@ -1,0 +1,15 @@
+---
+- hosts: test-servers
+  become: yes
+
+  tasks:
+   - name: change the permissions
+     shell: "chown -R ansadmin:ansadmin /opt/ansadmin/"
+     when:
+       - ansible_ssh_host == "10.1.1.180"
+
+
+   - name: change the permissions
+     shell: "chown -R praveen:praveen /opt/praveen/"
+     when:
+       - ansible_ssh_host == "10.1.2.115"

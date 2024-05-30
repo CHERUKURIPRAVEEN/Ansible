@@ -1,0 +1,7 @@
+---
+- hosts: 
+  become: yes
+  
+  tasks:
+   - name: change the permissions
+     shell: "chown -R praveen:praveen /home/opt/test/"
