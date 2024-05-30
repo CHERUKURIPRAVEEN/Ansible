@@ -195,16 +195,142 @@ ansible_port
 ansible_python_interpreter
 ```
 ```
-Ex:
+Ex:1
 [dev_web_servers]
 web01 ansible_host=10.1.1.100 ansible_port=22 ansible_user=ansadmin ansible_ssh_private_key_file=web.pem ansible_python_interpreter=/bin/python
 
 [dev_db_servers]
 db01 ansible_host=10.1.1.100 ansible_port=22 ansible_user=ansadmin ansible_ssh_private_key_file=db.pem ansible_python_interpreter=/bin/python
 db01 ansible_host=10.1.1.100 ansible_port=22 ansible_user=ansadmin ansible_ssh_private_key_file=db.pem ansible_python_interpreter=/bin/python
+-------------------------------------
+Ex:2
+[dev_web_servers]
+web01 ansible_host=10.1.1.100
+
+[dev_db_servers]
+db01 ansible_host=10.1.1.100
+db01 ansible_host=10.1.1.100
+
+[dev_web_servers:vars]
+ansible_user=answeb
+ansible_ssh_private_key_file=web.pem
+
+[dev_db_servers:vars]
+ansible_user=ansdb
+ansible_ssh_private_key_file=db.pem
+
+
+[all:vars]
+ansible_port=22
+ansible_python_interpreter=/bin/python
 ```
 
+#### Run Commnads on Localhost
+* Ansible uses SSH Protocol to connect managed hosts
+* If you do not have any managed nodes, you can test Ansible commands against the control node by using `localhost` or `127.0.0.1` for the host name
+* Ansible sets up an implicit localhost entry if you do not have localhost in your inventroy
+* In addiyion, instaed of using the SSH connection type, Ansible connects to localhost using the special local connection type by default.
 
+```
+ansible localhost -m ping
+
+OUTPUT:
+
+ansuser@ip-172-31-16-10:~$ ansible localhost -m ping
+localhost | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+```
+
+#### Ansible Inventroy 
+```
+ansible-inventory -i hosts --list
+
+OUTPUT:
+ansuser@ip-172-31-16-10:~$ ansible-inventory -i host --list
+{
+    "Dev_app_servers": {
+        "hosts": [
+            "172.31.27.200",
+            "172.31.27.300"
+        ]
+    },
+    "Dev_db_servers": {
+        "hosts": [
+            "172.31.27.201",
+            "172.31.27.301"
+        ]
+    },
+    "Dev_web_servers": {
+        "hosts": [
+            "web01",
+            "web02",
+            "web03"
+        ]
+    },
+    "_meta": {
+        "hostvars": {
+            "web01": {
+                "ansible_host": "172.31.27.199"
+            },
+            "web02": {
+                "ansible_host": "172.31.20.168"
+            },
+            "web03": {
+                "ansible_host": "ec2-54-211-218-105.compute-1.amazonaws.com"
+            }
+        }
+    },
+    "all": {
+        "children": [
+            "ungrouped",
+            "Dev_web_servers",
+            "Dev_app_servers",
+            "Dev_db_servers"
+        ]
+    }
+}
+```
+* Below command showing yaml format
+```
+ansible-inventory -i host --list -y
+ansuser@ip-172-31-16-10:~$ ansible-inventory -i host --list -y
+all:
+  children:
+    Dev_app_servers:
+      hosts:
+        172.31.27.200: {}
+        172.31.27.300: {}
+    Dev_db_servers:
+      hosts:
+        172.31.27.201: {}
+        172.31.27.301: {}
+    Dev_web_servers:
+      hosts:
+        web01:
+          ansible_host: 172.31.27.199
+        web02:
+          ansible_host: 172.31.20.168
+        web03:
+          ansible_host: ec2-54-211-218-105.compute-1.amazonaws.com
+```
+```
+ansible-inventory -i host --graph
+ansuser@ip-172-31-16-10:~$ ansible-inventory -i host --graph
+@all:
+  |--@ungrouped:
+  |--@Dev_web_servers:
+  |  |--web01
+  |  |--web02
+  |  |--web03
+  |--@Dev_app_servers:
+  |  |--172.31.27.200
+  |  |--172.31.27.300
+  |--@Dev_db_servers:
+  |  |--172.31.27.201
+  |  |--172.31.27.301
+```
 
 
 
