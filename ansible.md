@@ -144,7 +144,7 @@ Ex 2: A collection of hosts belonging to the 'app-servers' group
 ```
 ansible all -i hostfile.inv -m ping
 ```
-↪️ Grouping Hosts
+#### Grouping Hosts
 * You can organize your servers into different groups and subgroups(Nested Groups)
 * It is also possible to aggregate multiple groups as childern under a parent group
 
@@ -166,7 +166,8 @@ db2.exaple.com
 dev_web_servers
 dev_db_servers
 ```
-
+#### Common Petterns for Targeting Hosts and Groups
+https://docs.ansible.com/ansible/latest/inventory_guide/intro_patterns.html
 
 
 
