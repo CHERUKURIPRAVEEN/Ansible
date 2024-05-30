@@ -183,6 +183,26 @@ app02 ansible_host=10.1.2.200
 app03 ansible_host=10.1.2.300
 ```
 
+#### Ansible Host Variables
+* You can assign the variables to the hosts that will be used in palybooks, such as:
+```
+ansible_user
+ansible_ssh_pass(linux)
+ansible_password(windows)
+ansible_ssh_private_key_file
+ansible_connection(ssh for linux, winrm for windows and local host)
+ansible_port
+ansible_python_interpreter
+```
+```
+Ex:
+[dev_web_servers]
+web01 ansible_host=10.1.1.100 ansible_port=22 ansible_user=ansadmin ansible_ssh_private_key_file=web.pem ansible_python_interpreter=/bin/python
+
+[dev_db_servers]
+db01 ansible_host=10.1.1.100 ansible_port=22 ansible_user=ansadmin ansible_ssh_private_key_file=db.pem ansible_python_interpreter=/bin/python
+db01 ansible_host=10.1.1.100 ansible_port=22 ansible_user=ansadmin ansible_ssh_private_key_file=db.pem ansible_python_interpreter=/bin/python
+```
 
 
 
