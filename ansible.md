@@ -331,7 +331,24 @@ ansuser@ip-172-31-16-10:~$ ansible-inventory -i host --graph
   |  |--172.31.27.201
   |  |--172.31.27.301
 ```
+#### Ansible Ad-hoc Commands
+* In Ansible, Ad-hoc commands refer to one-time commands that are executed from the command line againest one or more managed hosts.
+* These commands are meant for quick tasks, testing and troubleshooting rather than for complex automachine scenarios
+* Ad-hoc commands are particulary useful for tasks that don't require writing a full playbook
+* The basic structure of an ad-hoc commands is as follows
 
+```
+ansible <host-pattern> -m <module> -a "<module arguments>"
+
+ansible web_servers -m ping -i hostfile
+```
+* Ad-hoc commands are useful for quick operation, but if you find yourself performing the same tasks repeatedly or needing more complex automation, its often better to create `ansible playbook`
+
+#### Ansible modules
+* Ansibe `modulues` are the building blocks of ansible automation
+* Theare small units of code that perform specific tasks on tagest machines
+* They are responsible for carrying out actions such as `installing packages`, `manageing files`, `configuring services` and more
+* There are hundreds of Ansible modules avaliable and categorized into various groups based on their functionality
 
 
 
