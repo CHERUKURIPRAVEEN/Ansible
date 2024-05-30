@@ -140,9 +140,9 @@ Ex 2: A collection of hosts belonging to the 'app-servers' group
 ## 10.1.1.100:9040
 ## 10.1.2.100:6713
 ```
-* Custom inver=ntroy file can be provided as an input using -i -r --inventroy flag
+* Custom inventroy file can be provided as an input using -i or --inventroy flag
 ```
-ansible all -i hostfile.inv -m ping
+ansible all -i <hostfile> -m ping
 ```
 #### Grouping Hosts
 * You can organize your servers into different groups and subgroups(Nested Groups)
