@@ -106,7 +106,7 @@ optional arguments:
 * Adding multiple `-v` will increase the verbosity, the built-in plugins currenty evaluate upto `-vvvvvv`
 * A reasonable level to start is `-vvv`, connection deburging might be require `-vvvv`
 ```
-▶️ ansible all -m ping -v
+ansible all -m ping -v
 ```
 ### Ansible Inventroy/hosts
 * Ansible keeps track of all the servers that is knows about through a `hosts` file written in `ini` format
@@ -144,7 +144,7 @@ Ex 2: A collection of hosts belonging to the 'app-servers' group
 ```
 ansible all -i hostfile.inv -m ping
 ```
-#### Grouping Hosts
+↪️ Grouping Hosts
 * You can organize your servers into different groups and subgroups(Nested Groups)
 * It is also possible to aggregate multiple groups as childern under a parent group
 
