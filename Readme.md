@@ -487,12 +487,19 @@ https://docs.ansible.com/ansible/2.7/user_guide/become.html
 * Below is a complete list of ansible utilites/binaries
 
 ➡️ **ansible**: used to run Ansible ad-hoc commands
+
 ➡️ **ansible-playbook**: execute Ansible Playbooks
+
 ➡️ **ansible-config**: Provides information about the configuration settings used by Ansible
+
 ➡️ **ansible-console**: opens an interactive Ansible console that allows you to run ad-hoc commands and perform tasks in an interactive mode
+
 ➡️ **ansible-doc**: used to access documentation for ansible module, plugins and playbook keywords.
+
 ➡️ **ansible-galaxy**: used to intract with ansible galaxy, which is a public repository of ansible roles
+
 ➡️ **ansible-inventroy**: shows inventory. Can generate dynamic inventory
+
 ➡️ **ansible-vault**: used to encrypt/decrypt sensitive data such as passwords, API keys, and other secrets in ansible playbook and files
 
 ** Listing Avalible Modules
