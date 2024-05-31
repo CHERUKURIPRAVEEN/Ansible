@@ -434,12 +434,82 @@ ansible <group name> -m service -a "name=httpd state=stopped"
 ```
 ansible <group name> -m setup
 ```
-
 #### Ansible modules
 * Ansibe `modulues` are the building blocks of ansible automation
 * Theare small units of code that perform specific tasks on tagest machines
 * They are responsible for carrying out actions such as `installing packages`, `manageing files`, `configuring services` and more
 * There are hundreds of Ansible modules avaliable and categorized into various groups based on their functionality
+#### Ansible Command Vs Shell Module
+* The `command` and `shell` modules execute commands on remote nodes. They are almost identical.
+* The shell module is used when we need to execute a command in remote servers, in the shell of your choice. By default the commands are run on the /bin/bash shell. You can make use of the various operations such as |, <, > etc. and environmental variables such as $HOME.
+* The command module cannot use special shell operators such as redirections (<, >), pipes (|), & or access user specific environment variables like $HOSTNAME.
+* The Command Module doesnot process the commands through a shell. So, it does not support the above operations.
+
+```
+ansible all -m command -a "df -h | grep xvda1" -i hosts
+
+ansible all -m shell -a "df -h | grep xvda1" -i hosts
+```
+#### Understanding Privilege Escalation
+* For security reasons, Ansible connects to remote hosts as nonprivilege user.
+* For escalating privileges to get administrative access as `root`, we need to configure few parameters under `[privilege_escalation]` section of the Ansible configuration file.
+* To enable privilege escaltion, the directive `become = true` should be set in the configuration file but we can override it when running ad hoc commands or Ansible Playbooks in case if a task or play does not require privilege escalation
+* Other configurations such as `become_method`, `become_user`, `become_ask_pass` also need to be set in the configuration file. 
+
+#### Privilege Esacaltion using connection Variables
+* We can also define different become options in hosts file for each managed node or group.
+
+```
+ansible_become
+ansible_become_method
+ansible_become_user
+ansible_become_password
+
+ansible_user
+ansible_connection
+ansible_host
+ansible_python_interoreter
+ansible_port
+ansible_ssh_pass
+ansible_ssh_private_key_file
+```
+
+1. **ansible_become**: set to `true` to activate privilege escation.
+2. **ansible_become_method**: Define how to escalate privileges on managed hosts, Default is `sudo`
+3. **ansible_become_user**: set to user desired privileges - the user you become, NOT the user you login as. Default value is `root`
+4. **ansible_become_password**: Passwdord use when escalating privileges on managed hosts. Usually, the root password or normal user password if added to sudoers file.
+
+* Privileges elascations using command line flages
+https://docs.ansible.com/ansible/2.7/user_guide/become.html
+
+#### Ansible Binaries/Utilies
+* Most of us are familier with `ansible` and `ansible-playbook`, but those are not the only utilities ansible provides.
+* Below is a complete list of ansible utilites/binaries
+
+➡️ **ansible**: used to run Ansible ad-hoc commands
+➡️ **ansible-playbook**: execute Ansible Playbooks
+➡️ **ansible-config**: Provides information about the configuration settings used by Ansible
+➡️ **ansible-console**: opens an interactive Ansible console that allows you to run ad-hoc commands and perform tasks in an interactive mode
+➡️ **ansible-doc**: used to access documentation for ansible module, plugins and playbook keywords.
+➡️ **ansible-galaxy**: used to intract with ansible galaxy, which is a public repository of ansible roles
+➡️ **ansible-inventroy**: shows inventory. Can generate dynamic inventory
+➡️ **ansible-vault**: used to encrypt/decrypt sensitive data such as passwords, API keys, and other secrets in ansible playbook and files
+
+** Listing Avalible Modules
+* Run `ansible-doc -l` command to see a list of all the available modules
+* There are as many as 8000+ module available
+```
+ansible-doc -l | wc -l
+```
+* The `ansible-doc` commands in ansible is used to access documentation and information about ansible modules, plugins, and playbook keywords
+* It provides detailed explanations of how to specific ansible components including their parameters, options and examples.
+* This command is particularly useful when you need to understand how to use a module or lookup a modules documentation quickly.
+
+```
+ansible-doc <module_name>
+```
+#### Ansible Gather Facts
+
 
 
 
