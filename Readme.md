@@ -1,27 +1,21 @@
 ## Ansible
 
 # Ansible Installation
-
 Ansible is an open source automation platform. It is very, very simple to setup and yet powerful. Ansible can help you with configuration management, application deployment, task automation.
 
 ### Installation steps:
-
 Add a EPEL (Extra Packages for Enterprise Linux)third party repository to get packages for Ansible 
 ```
 rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 ```
-
 Install Ansible
 ``` 
 yum install ansible -y 
 ```
-
 Check Ansible version 
-
 ``` 
 ansible --version
 ```
-
 Create a new user for ansible administration & grant admin access to user (Master and Slave)
 ```
 useradd ansadmin
@@ -29,7 +23,6 @@ passwd ansadmin
 # below command addes ansadmin to sudoers file. But strongly recommended to use "visudo" command if you are aware vi or nano editor. 
 echo "ansadmin ALL=(ALL) ALL" >> /etc/sudoers
 ```
-
 Using keybased authentication is advised. If you are still at learning stage use password based authentication (Master & Slave)
 ```
 # sed command replaces "PasswordAuthentication no to yes" without editing file 
@@ -517,6 +510,32 @@ ansible-doc <module_name>
 ansible-doc setup
 ```
 #### Ansible Gather Facts
+* By default, before running an ad-hoc command or playbook ansible will gather information about the system that are beging provisioned
+* This information refferd to as facts contain details such as network interfaces and addresses the operating system running on remote nodes and availble memory among other things.
+* Ansible stores facts in JSON format with items grouped in nodes
+* Gather facts is enabled by default and can be disabled in ansible.cfg
+* To check what kind of information is available for the system you're provisioning you can run the setup module with an ad hoc command.
+
+```
+ansible <Taget_Host> -m setup
+
+Ex:
+Ansible all -m setup
+```
+
+#### Ansible Package Manger Module
+* Ansible provides package manager module that allow you to manage software packages on target hosts
+* These Modules are used to install, upgrade, remove and query packages using the package manager specific to the target hosts's operating system
+* Mostly widely used package manger module include yum, yum_repository, apt, apt_repository, apk, homebrew, etc....
+
+```
+Install
+ansible <target hosts> -m yum -a "name=<package name> state= present"
+Remove
+ansible <target hosts> -m yum -a "name=<package name> state= absent"
+Update
+ansible <target hosts> -m yum -a "name=<package name> state= latest"
+```
 
 
 
