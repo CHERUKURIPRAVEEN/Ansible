@@ -514,9 +514,9 @@ ansible-doc -l | wc -l
 
 ```
 ansible-doc <module_name>
+ansible-doc setup
 ```
 #### Ansible Gather Facts
-
 
 
 
