@@ -528,15 +528,18 @@ Ansible all -m setup
 * These Modules are used to install, upgrade, remove and query packages using the package manager specific to the target hosts's operating system
 * Mostly widely used package manger module include yum, yum_repository, apt, apt_repository, apk, homebrew, etc....
 
-```
 Install
+```
 ansible <target hosts> -m yum -a "name=<package name> state= present"
+```
 Remove
+```
 ansible <target hosts> -m yum -a "name=<package name> state= absent"
+```
 Update
+```
 ansible <target hosts> -m yum -a "name=<package name> state= latest"
 ```
-
 
 
 
