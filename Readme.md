@@ -544,6 +544,31 @@ More Updates for Package modules:
 https://docs.ansible.com/ansible/2.7/modules/list_of_packaging_modules.html
 
 #### Ansible System Module
+* The systemd module in Ansible is used to manage systemd services on remote hosts
+* It allows to start, stop, restart, enable, and disable services controlled by systemd
+* This Module particulerly useful for managing services on modern linux distributions that use systemd as the init system
+
+```
+ansible <Target host> -m systemd -a "name=packagename state=started"
+ansible <Target host> -m systemd -a "name=packagename state=stoped"
+ansible <Target host> -m systemd -a "name=packagename state=reloaded"
+ansible <Target host> -m systemd -a "name=packagename enabled=yes"
+ansible <Target host> -m systemd -a "name=packagename enabled=no"
+```
+
+#### Ansible user module
+* The User module in Ansible is used to manage user accounts on remote hosts
+* It allows you to create, modify or delete user accounts and manage their attributes like password, shell, and group mmembeship
+
+```
+ansible <Target host> -m user -a "name=<username> state=present"
+ansible <Target host> -m user -a "name=<username> state=absent"
+ansible <Target host> -m user -a "name=<username> groups=<usergroup1,usergroup2>"
+```
+```
+Ex:
+ansible devservers -m user -i hosts -a "name=praveen uid=1004 state=present groups=dev,ansible"
+```
 
 
 
